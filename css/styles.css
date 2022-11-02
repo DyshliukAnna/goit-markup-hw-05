@@ -11,6 +11,8 @@
   --secondary-background-color: #f5f4fa;
   --footer-background-color: #2f303f;
   --svg-background-color: #f5f4fa;
+  --image-background-color: rgba(47, 48, 58, 0.8);
+  --modal-background-color: rgba(0, 0, 0, 0.2);
   --footer-mail-phone-color: rgba(255, 255, 255, 0.6);
   --border-color-portfolio: #eeeeee;
   --border-color-header: #ececec;
@@ -137,6 +139,24 @@ img {
 
 .nav-link.current {
   color: var(--accent-color);
+  position: relative;
+}
+
+/* Нижнє підкреслення у Хедер під посиланням Студія */
+.studio-underline {
+  position: relative;
+}
+
+.studio-underline::after {
+  display: block;
+  content: '';
+  width: 48px;
+  height: 4px;
+  background-color: var(--accent-color);
+
+  position: absolute;
+  top: 76px;
+  left: -2px;
 }
 /* Список в Хедері */
 
@@ -184,7 +204,7 @@ img {
   justify-content: center;
 }
 
-/* Іконки в Футері */
+/* Іконки в Хедері */
 
 .icon-logo-header {
   margin-right: 10px;
@@ -387,13 +407,36 @@ img {
 }
 .flex-list {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+
   /* gap: 30px;
     flex-basis: calc((100%-60px) / 3); */
   margin-top: var(--card-portfolio-gap);
   margin-left: var(--card-portfolio-gap);
   flex-basis: calc(100% / 3 - var(--card-portfolio-gap));
+
+  position: relative;
+}
+/* Позиціонування тексту відносно зображення в секції Чим ми займаємось
+ */
+
+.main-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 70px;
+  /* z-index: 1; */
+
+  color: var(--hero-color);
+  background-color: var(--image-background-color);
+
+  font-weight: 700;
+  line-height: calc(16 / 14);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 /* Секція з фотографіями нашої команди */
 
@@ -459,7 +502,28 @@ img {
   margin-bottom: 16px;
 }
 
-/* Сторінка Портфоліо. Стилізація кнопок і карток*/
+/* /* Сторінка Портфоліо */
+
+/* Підкреслення посилання Портфоліо в Хедері. Абсолютне позиціонування */
+
+.portfolio-underline {
+  position: relative;
+}
+
+.portfolio-underline::after {
+  display: block;
+  content: '';
+  width: 78px;
+  height: 4px;
+  background-color: var(--accent-color);
+
+  position: absolute;
+  top: 76px;
+  left: -3px;
+}
+
+/* Стилізація кнопок і карток*/
+*/
 
 /* Кнопки */
 .hero-portfolio-title {
@@ -472,7 +536,7 @@ img {
   text-decoration: none;
 }
 
-/* Відстeпи від кнопок до карток */
+/* Відступи від кнопок до карток */
 
 .secondary-buttons {
   margin-bottom: 50px;
@@ -583,6 +647,36 @@ img {
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
+/* Абсолютне позиціонрування оверлею з текстом на картках на сторінці Портфоліо*/
+
+.thumb-card {
+  position: relative;
+}
+
+.overlay-text-decoration {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: var(--hero-color);
+  background-color: var(--accent-color);
+  display: flex;
+  padding: 63px 24px;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  line-height: calc(28 / 18);
+  letter-spacing: 0.03em;
+  opacity: 0;
+  /* transform: translateY(0px); */
+}
+.overlay-text-decoration:hover {
+  transform: translateY(0px);
+  transition: transform 3000ms;
+  opacity: 1;
+}
 /* Секція Постійні клієнти */
 
 .text-clients {
@@ -776,4 +870,48 @@ img {
 .main-flex-footer {
   display: flex;
   align-items: baseline;
+}
+/* Модальне вікно на головній сторінці. Кнопка :"Засмовити послугу" */
+
+/* Затемнення бекдропу(фону під модалкою при відкритті вікна) */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--modal-background-color);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  /* На елемент більше не діють ніякі події, що дозволяє при hidden клацати по кнопках і бекдроп з модалкою не заважають, більше не перекривають можливість працювати із сторінкою, хоча і візуально не видно було щоб заважало, але кнопки не натискались. */
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 528px;
+  height: 581px;
+  background-color: var(--primary-background-color);
+}
+/* Кнопка закриття модального вікна */
+.button-modal {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  width: 30px;
+  height: 30px;
+
+  background-color: var(--primary-background-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  transform: rotate(45deg);
 }
