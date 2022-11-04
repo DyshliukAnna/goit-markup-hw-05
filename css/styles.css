@@ -164,7 +164,10 @@ img {
   position: absolute;
   top: 76px;
   left: -2px;
+
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 /* Список в Хедері */
 
 .list-header {
@@ -521,24 +524,6 @@ img {
 
 /* /* Сторінка Портфоліо */
 
-/* Підкреслення посилання Портфоліо в Хедері. Абсолютне позиціонування */
-
-/* .portfolio-underline {
-  position: relative;
-}
-
-.portfolio-underline::after {
-  display: block;
-  content: '';
-  width: 78px;
-  height: 4px;
-  background-color: var(--accent-color);
-
-  position: absolute;
-  top: 76px;
-  left: -3px;
-} */
-
 /* Стилізація кнопок і карток*/
 */
 
@@ -656,6 +641,7 @@ img {
 }
 
 .link-decoration-portfolio {
+  position: relative;
   display: block;
   width: 370px;
   text-decoration: none;
@@ -672,38 +658,33 @@ img {
 
 .thumb-card {
   position: relative;
+  overflow: hidden;
 }
-
 .overlay-text-decoration {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
+
   color: var(--hero-color);
   background-color: var(--accent-color);
   display: flex;
   padding: 63px 24px;
   align-items: center;
   justify-content: center;
-
   font-size: 18px;
   line-height: calc(28 / 18);
   letter-spacing: 0.03em;
-  opacity: 0;
-
-  transition-property: color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(100%);
 
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.overlay-text-decoration:hover {
-  transform: translateY(0px);
-  transition: transform 3000ms;
-  opacity: 1;
+.thumb-card:hover .overlay-text-decoration {
+  transform: translateY(0%);
 }
+
 /* Секція Постійні клієнти */
 
 .text-clients {
@@ -925,6 +906,7 @@ img {
 .backdrop.is-hidden {
   opacity: 0;
   pointer-events: none;
+
   /* На елемент більше не діють ніякі події, що дозволяє при hidden клацати по кнопках і бекдроп з модалкою не заважають, більше не перекривають можливість працювати із сторінкою, хоча і візуально не видно було щоб заважало, але кнопки не натискались. */
 }
 
@@ -933,6 +915,7 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: background-color 1000ms cubic-bezier(0.4, 0, 0.2, 1);
   width: 528px;
   height: 581px;
   background-color: var(--primary-background-color);
